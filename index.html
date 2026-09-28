@@ -1,0 +1,479 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bharat Raj | Software Developer</title>
+  <meta name="description" content="Bharat Raj is a software developer. Projects, experience, skills, and how to get in touch.">
+  <meta property="og:title" content="Bharat Raj | Software Developer">
+  <meta property="og:description" content="Projects, experience, skills, and how to get in touch.">
+  <meta property="og:type" content="website">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#F7F9FB" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0F1318" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2317202B'/%3E%3Ctext x='16' y='22.5' font-family='monospace' font-size='18' font-weight='700' text-anchor='middle' fill='%23F7F9FB'%3EB%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Recursive:slnt,wght,CASL,CRSV,MONO@-15..0,300..1000,0..1,0..1,0..1&display=swap">
+  <script>document.documentElement.classList.add("js");</script>
+  <style>
+    /* ---------- Design tokens ---------- */
+    :root {
+      --canvas: #F7F9FB;
+      --ink: #17202B;
+      --muted: #566273;
+      --line: #DCE2E9;
+      --line-strong: #B4BEC9;
+      --open: #1A7F37;    /* in progress, current role, available */
+      --merged: #8250DF;  /* shipped, past role */
+      --sans: "Recursive", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      --mono: "Recursive", ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+      --left: 15rem;
+      --gap: clamp(1.5rem, 4vw, 3.5rem);
+      --ease: cubic-bezier(.2, .8, .2, 1);
+      color-scheme: light;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --canvas: #0F1318;
+        --ink: #E7ECF2;
+        --muted: #98A3B3;
+        --line: #26303B;
+        --line-strong: #435061;
+        --open: #3FB950;
+        --merged: #A57BF8;
+        color-scheme: dark;
+      }
+    }
+
+    /* ---------- Base ---------- */
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0;
+      background: var(--canvas);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-size: 1.125rem;
+      line-height: 1.65;
+      font-variation-settings: "MONO" 0, "CASL" 0;
+    }
+    img, svg { max-width: 100%; }
+    ::selection { background: var(--merged); color: #fff; }
+    a {
+      color: var(--ink);
+      text-decoration-line: underline;
+      text-decoration-thickness: 1px;
+      text-decoration-color: var(--line-strong);
+      text-underline-offset: .22em;
+    }
+    a:hover { text-decoration-color: currentColor; text-decoration-thickness: 2px; }
+    :focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; border-radius: 3px; }
+    h1, h2, h3 { margin: 0; line-height: 1.2; }
+    p { margin: 0; }
+
+    /* Technology names are code identifiers, so they use the monospace cut */
+    .mono { font-family: var(--mono); font-variation-settings: "MONO" 1, "CASL" 0; }
+
+    .wrap { max-width: 70rem; margin-inline: auto; padding-inline: clamp(1.25rem, 5vw, 3rem); }
+    .skip {
+      position: absolute; left: 1rem; top: -4rem; z-index: 10;
+      padding: .6rem 1rem; border-radius: .4rem;
+      background: var(--ink); color: var(--canvas); text-decoration: none;
+    }
+    .skip:focus { top: 1rem; }
+
+    /* ---------- Header ---------- */
+    .site-header {
+      display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+      gap: .5rem 2rem; padding-block: 1.25rem;
+    }
+    .home { font-weight: 700; text-decoration: none; }
+    .site-header ul { display: flex; flex-wrap: wrap; gap: .25rem 1.5rem; margin: 0; padding: 0; list-style: none; }
+    .site-header nav a { color: var(--muted); font-size: 1rem; text-decoration: none; }
+    .site-header nav a:hover { color: var(--ink); text-decoration: underline; }
+
+    /* ---------- Hero: the name "compiles" from monospace into its final form ---------- */
+    .hero { padding-block: clamp(3.5rem, 11vw, 7.5rem) clamp(3.5rem, 9vw, 6rem); }
+    .hero h1 {
+      font-size: clamp(2.75rem, 12.5vw, 8.25rem);
+      font-weight: 800;
+      line-height: .95;
+      letter-spacing: -.025em;
+    }
+    .js .hero h1 {
+      font-family: var(--mono);
+      font-variation-settings: "MONO" 1, "CASL" 0;
+      letter-spacing: 0;
+    }
+    .js.fonts-ready .hero h1 {
+      font-family: var(--sans);
+      font-variation-settings: "MONO" 0, "CASL" 0;
+      letter-spacing: -.025em;
+      transition: font-variation-settings 1.3s var(--ease) .1s, letter-spacing 1.3s var(--ease) .1s;
+    }
+    .lead {
+      max-width: 34ch; margin-top: 1.75rem;
+      font-size: clamp(1.25rem, 2.3vw, 1.625rem); line-height: 1.45;
+    }
+    .availability { display: flex; align-items: flex-start; gap: .5rem; margin-top: 1.5rem; color: var(--muted); font-size: 1rem; }
+    .availability .glyph { color: var(--open); }
+    .actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 2.25rem; }
+    .button {
+      display: inline-flex; align-items: center;
+      padding: .8rem 1.3rem; border: 1.5px solid transparent; border-radius: .5rem;
+      font-size: 1rem; font-weight: 600; line-height: 1.2; text-decoration: none;
+    }
+    .button-primary { background: var(--ink); border-color: var(--ink); color: var(--canvas); }
+    .button-primary:hover { background: color-mix(in srgb, var(--ink) 82%, var(--canvas)); }
+    .button-secondary { border-color: var(--line-strong); color: var(--ink); }
+    .button-secondary:hover { border-color: var(--ink); }
+
+    /* ---------- Status glyphs (borrowed from pull-request states) ---------- */
+    .glyph { width: 1em; height: 1em; flex: none; }
+    .glyph .ring { fill: var(--canvas); stroke: currentColor; stroke-width: 2; }
+    .glyph .tick { fill: none; stroke: var(--canvas); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+    .state { display: flex; align-items: flex-start; gap: .45rem; margin-top: .45rem; font-size: .95rem; font-weight: 600; }
+    .state .glyph, .availability .glyph { margin-top: .325em; }
+    .state-open { color: var(--open); }
+    .state-merged { color: var(--merged); }
+
+    /* ---------- Sections and the shared two-column grid ---------- */
+    .section { padding-block: clamp(3.5rem, 8vw, 6rem); border-top: 1px solid var(--line); }
+    .section > h2 { font-size: clamp(1.75rem, 3.5vw, 2.25rem); font-weight: 700; letter-spacing: -.01em; margin-bottom: 1rem; }
+    .rows { margin: 0; padding: 0; list-style: none; }
+    .row {
+      display: grid; grid-template-columns: var(--left) minmax(0, 1fr);
+      gap: .5rem var(--gap); padding-block: 1.75rem; align-items: baseline;
+    }
+    .row-body > * + * { margin-top: .75rem; }
+    .row-body p { max-width: 62ch; }
+    .split { display: grid; grid-template-columns: var(--left) minmax(0, 1fr); gap: 1rem var(--gap); align-items: baseline; }
+    .section.split > h2 { margin-bottom: 0; }
+    .split-body > * + * { margin-top: 1.1rem; }
+    .split-body > p { max-width: 62ch; }
+    .row h3 { font-size: 1.375rem; font-weight: 700; line-height: 1.25; }
+    .stack { color: var(--muted); font-size: .95rem; }
+    .links { display: flex; flex-wrap: wrap; gap: .4rem 1.5rem; }
+
+    /* ---------- Latest repositories (loaded from the GitHub API) ---------- */
+    .note { margin-top: .45rem; color: var(--muted); font-size: .95rem; }
+    .repo-list {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+      gap: 1.75rem var(--gap); margin: 0; padding: 0; list-style: none;
+    }
+    .repo-list:empty { display: none; }
+    .repo-name { font-weight: 600; font-size: 1.05rem; }
+    .repo-desc { margin-top: .3rem; font-size: 1rem; }
+    .repo-meta { margin-top: .3rem; color: var(--muted); font-size: .9rem; }
+    .repo-status { color: var(--muted); font-size: 1rem; }
+    .repo-status:not([hidden]) + .repo-all { margin-top: .75rem; }
+    .repo-list:not(:empty) ~ .repo-all { margin-top: 1.75rem; }
+
+    /* ---------- Experience timeline ---------- */
+    .when { color: var(--muted); font-variant-numeric: tabular-nums; padding-top: .1rem; }
+    .rows.timeline { padding-top: 1.75rem; }
+    .timeline .row { padding-block: 0; }
+    .timeline .row-body { position: relative; padding: 0 0 2.75rem 2.25rem; }
+    .timeline .row-body::before {
+      content: ""; position: absolute; left: calc(.5rem - 1px); top: .5rem; bottom: 0;
+      width: 2px; background: var(--line);
+    }
+    .timeline .row:last-child .row-body { padding-bottom: 0; }
+    .timeline .row:last-child .row-body::before { display: none; }
+    .timeline .node { position: absolute; left: 0; top: .35rem; width: 1rem; height: 1rem; }
+    .timeline .current .node { color: var(--open); }
+    .timeline .past .node { color: var(--merged); }
+    .org { color: var(--muted); }
+    .timeline .node + h3 { margin-top: 0; }
+    .timeline .org { margin-top: .15rem; }
+    .timeline h3 + .org + p { margin-top: .75rem; }
+
+    /* ---------- Skills ---------- */
+    .skills .row { padding-block: 1rem; }
+    .skills dt { font-weight: 600; }
+    .skills dd { margin: 0; }
+
+    /* ---------- Contact ---------- */
+    .contact-email {
+      font-size: clamp(1.6rem, 5vw, 3.25rem); font-weight: 700; line-height: 1.15; letter-spacing: -.015em;
+      overflow-wrap: anywhere;
+    }
+    .contact-email a { text-decoration-thickness: 2px; text-underline-offset: .15em; }
+    .contact-links { display: flex; flex-wrap: wrap; gap: .5rem 1.75rem; margin: 1.75rem 0 0; padding: 0; list-style: none; }
+
+    .site-footer { padding-bottom: 3rem; color: var(--muted); font-size: .95rem; }
+    .site-footer p { padding-top: 2.5rem; border-top: 1px solid var(--line); }
+    .site-footer a { color: var(--muted); }
+
+    /* ---------- Small screens ---------- */
+    @media (max-width: 760px) {
+      .row, .split { grid-template-columns: minmax(0, 1fr); gap: .35rem; }
+      .split { gap: 1rem; }
+      .timeline .row { position: relative; gap: .25rem; }
+      .timeline .when { padding-left: 2.25rem; }
+      .timeline .row-body { position: static; }
+      .timeline .row-body::before { display: none; }
+      .timeline .row::before {
+        content: ""; position: absolute; left: calc(.5rem - 1px); top: .75rem; bottom: -.45rem;
+        width: 2px; background: var(--line);
+      }
+      .timeline .row:last-child::before { display: none; }
+      .timeline .node { top: .43rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .js .hero h1, .js.fonts-ready .hero h1 {
+        font-family: var(--sans);
+        font-variation-settings: "MONO" 0, "CASL" 0;
+        letter-spacing: -.025em;
+        transition: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="wrap site-header">
+    <a class="home" href="#top">Bharat Raj</a>
+    <nav aria-label="Sections">
+      <ul>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main" class="wrap">
+    <section class="hero" id="top" aria-label="Introduction">
+      <h1>Bharat Raj</h1>
+      <!-- EDIT: one sentence about what you build -->
+      <p class="lead">I'm a software developer who builds fast, dependable web applications, from the database to the interface.</p>
+      <!-- EDIT: change or delete this line if you're not looking for work -->
+      <p class="availability">
+        <svg class="glyph" viewBox="0 0 16 16" aria-hidden="true"><circle class="ring" cx="8" cy="8" r="5.5"/><circle cx="8" cy="8" r="2" fill="currentColor"/></svg>
+        Open to new roles and freelance projects
+      </p>
+      <div class="actions">
+        <!-- EDIT: your email address -->
+        <a class="button button-primary" href="mailto:your.email@example.com">Email me</a>
+        <a class="button button-secondary" href="https://github.com/bharatraj08">See my GitHub</a>
+      </div>
+    </section>
+
+    <section class="section split" id="about" aria-labelledby="about-title">
+      <h2 id="about-title">About</h2>
+      <!-- EDIT: a short, honest intro in your own words -->
+      <div class="split-body">
+        <p>I like turning rough requirements into software people enjoy using. I work across the stack, designing APIs and database schemas, building interfaces, and setting up the tooling that makes releases routine.</p>
+        <p>Outside of work I build small tools to learn new things, and I keep most of them public on GitHub.</p>
+      </div>
+    </section>
+
+    <section class="section" id="projects" aria-labelledby="projects-title">
+      <h2 id="projects-title">Projects</h2>
+      <!-- Status: "state-open" = In progress (green), "state-merged" = Shipped (purple).
+           Copy an <article> block to add a project. -->
+      <div class="rows">
+        <article class="row">
+          <div>
+            <h3>Portfolio website</h3>
+            <p class="state state-open">
+              <svg class="glyph" viewBox="0 0 16 16" aria-hidden="true"><circle class="ring" cx="8" cy="8" r="5.5"/><circle cx="8" cy="8" r="2" fill="currentColor"/></svg>
+              In progress
+            </p>
+          </div>
+          <div class="row-body">
+            <p>This site: a single HTML file with no build step, published with GitHub Pages. It pulls my latest public repositories straight from GitHub.</p>
+            <p class="stack mono">HTML, CSS, JavaScript, GitHub Pages</p>
+            <p class="links"><a href="https://github.com/bharatraj08/demo-portfolio-website">Source code</a></p>
+          </div>
+        </article>
+
+        <!-- SAMPLE PROJECT: replace with a real one, or delete -->
+        <article class="row">
+          <div>
+            <h3>Task manager API</h3>
+            <p class="state state-merged">
+              <svg class="glyph" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="7" fill="currentColor"/><path class="tick" d="M4.9 8.3l2.1 2.1 4.2-4.6"/></svg>
+              Shipped
+            </p>
+          </div>
+          <div class="row-body">
+            <p>A REST API for small teams to create, assign, and track tasks, with sign-in, role-based permissions, and automated tests for every endpoint.</p>
+            <p class="stack mono">Node.js, Express, PostgreSQL, Jest</p>
+            <p class="links"><a href="#">Source code</a><a href="#">API docs</a></p>
+          </div>
+        </article>
+
+        <!-- SAMPLE PROJECT: replace with a real one, or delete -->
+        <article class="row">
+          <div>
+            <h3>Expense tracker</h3>
+            <p class="state state-merged">
+              <svg class="glyph" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="7" fill="currentColor"/><path class="tick" d="M4.9 8.3l2.1 2.1 4.2-4.6"/></svg>
+              Shipped
+            </p>
+          </div>
+          <div class="row-body">
+            <p>A React app that turns bank statement CSV files into monthly spending charts. Everything runs in the browser, so no financial data leaves your device.</p>
+            <p class="stack mono">React, TypeScript, Chart.js</p>
+            <p class="links"><a href="#">Source code</a><a href="#">Live demo</a></p>
+          </div>
+        </article>
+
+        <div class="row">
+          <div>
+            <h3>Latest on GitHub</h3>
+            <p class="note">Updates automatically from my public repositories.</p>
+          </div>
+          <div>
+            <ul class="repo-list" id="repo-list"></ul>
+            <p class="repo-status" id="repo-status" hidden></p>
+            <p class="repo-all"><a href="https://github.com/bharatraj08?tab=repositories">All repositories on GitHub</a></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="experience" aria-labelledby="experience-title">
+      <h2 id="experience-title">Experience</h2>
+      <!-- EDIT: your real roles. Use class "current" for your present job and "past" for earlier ones. -->
+      <ol class="rows timeline">
+        <li class="row current">
+          <p class="when">2024 to present</p>
+          <div class="row-body">
+            <svg class="glyph node" viewBox="0 0 16 16" aria-hidden="true"><circle class="ring" cx="8" cy="8" r="5.5"/><circle cx="8" cy="8" r="2" fill="currentColor"/></svg>
+            <h3>Software Developer</h3>
+            <p class="org">Company name</p>
+            <p>Build and maintain features across the frontend and backend of the company's main web app, from planning and code review through release.</p>
+            <p class="stack mono">TypeScript, React, Node.js, PostgreSQL</p>
+          </div>
+        </li>
+        <li class="row past">
+          <p class="when">2022 to 2024</p>
+          <div class="row-body">
+            <svg class="glyph node" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="7" fill="currentColor"/><path class="tick" d="M4.9 8.3l2.1 2.1 4.2-4.6"/></svg>
+            <h3>Junior Developer</h3>
+            <p class="org">Company name</p>
+            <p>Fixed bugs, wrote tests, and shipped my first production features while learning the team's codebase and review process.</p>
+            <p class="stack mono">JavaScript, Python, MySQL</p>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <section class="section" id="skills" aria-labelledby="skills-title">
+      <h2 id="skills-title">Skills</h2>
+      <!-- EDIT: list only what you'd be happy to be interviewed on -->
+      <dl class="rows skills">
+        <div class="row"><dt>Languages</dt><dd class="mono">JavaScript, TypeScript, Python, SQL</dd></div>
+        <div class="row"><dt>Frameworks and libraries</dt><dd class="mono">React, Node.js, Express, Tailwind CSS</dd></div>
+        <div class="row"><dt>Tools and platforms</dt><dd class="mono">Git, GitHub Actions, Docker, PostgreSQL, Linux</dd></div>
+      </dl>
+    </section>
+
+    <section class="section split" id="contact" aria-labelledby="contact-title">
+      <h2 id="contact-title">Contact</h2>
+      <div class="split-body">
+        <p>Email is the quickest way to reach me. I usually reply within two working days.</p>
+        <!-- EDIT: your email address and LinkedIn profile -->
+        <p class="contact-email"><a href="mailto:your.email@example.com">your.email@example.com</a></p>
+        <ul class="contact-links">
+          <li><a href="https://github.com/bharatraj08">GitHub</a></li>
+          <li><a href="https://www.linkedin.com/in/your-profile">LinkedIn</a></li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="wrap site-footer">
+    <p>&copy; <span id="year">2026</span> Bharat Raj. Built with plain HTML, CSS, and JavaScript. <a href="https://github.com/bharatraj08/demo-portfolio-website">View the source</a>.</p>
+  </footer>
+
+  <script>
+    // ----- Settings -----
+    const GITHUB_USER = "bharatraj08";
+    const HIDE_REPOS = ["demo-portfolio-website"]; // repos already featured in Projects
+    const REPO_LIMIT = 6;
+
+    // Hero: once the font is ready, let the name settle from monospace into its final shape
+    (function () {
+      const root = document.documentElement;
+      const settle = () => requestAnimationFrame(() => requestAnimationFrame(() => root.classList.add("fonts-ready")));
+      if (document.fonts && document.fonts.load) {
+        Promise.race([
+          document.fonts.load('800 1em "Recursive"'),
+          new Promise((resolve) => setTimeout(resolve, 2500))
+        ]).then(settle, settle);
+      } else {
+        settle();
+      }
+    })();
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Latest public repositories from the GitHub API
+    (async function loadRepos() {
+      const list = document.getElementById("repo-list");
+      const status = document.getElementById("repo-status");
+      status.hidden = false;
+      status.textContent = "Loading repositories from GitHub...";
+      try {
+        const res = await fetch(
+          `https://api.github.com/users/${GITHUB_USER}/repos?sort=pushed&per_page=100`,
+          { headers: { Accept: "application/vnd.github+json" } }
+        );
+        if (!res.ok) throw new Error(`GitHub responded with ${res.status}`);
+        const repos = (await res.json())
+          .filter((r) => !r.fork && !r.archived && !HIDE_REPOS.includes(r.name))
+          .slice(0, REPO_LIMIT);
+
+        if (repos.length === 0) {
+          status.textContent = "New public repositories will appear here automatically.";
+          return;
+        }
+
+        const month = new Intl.DateTimeFormat("en", { month: "short", year: "numeric" });
+        for (const repo of repos) {
+          const li = document.createElement("li");
+
+          const name = document.createElement("a");
+          name.className = "repo-name mono";
+          name.href = repo.html_url;
+          name.textContent = repo.name;
+          li.append(name);
+
+          if (repo.description) {
+            const desc = document.createElement("p");
+            desc.className = "repo-desc";
+            desc.textContent = repo.description;
+            li.append(desc);
+          }
+
+          const meta = document.createElement("p");
+          meta.className = "repo-meta";
+          const updated = month.format(new Date(repo.pushed_at));
+          if (repo.language) {
+            const lang = document.createElement("span");
+            lang.className = "mono";
+            lang.textContent = repo.language;
+            meta.append(lang, `, updated ${updated}`);
+          } else {
+            meta.textContent = `Updated ${updated}`;
+          }
+          li.append(meta);
+          list.append(li);
+        }
+        status.hidden = true;
+      } catch (err) {
+        status.textContent = "Couldn't load repositories from GitHub right now. You can still browse them there.";
+      }
+    })();
+  </script>
+</body>
+</html>
